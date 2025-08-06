@@ -3,6 +3,7 @@ package com.movieflix.Service;
 import com.movieflix.entity.CategoryEntity;
 import com.movieflix.entity.MovieEntity;
 import com.movieflix.entity.StreamingEntity;
+import com.movieflix.mapper.MovieMapper;
 import com.movieflix.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,10 @@ public class MovieService {
 
     public List<MovieEntity> findAll(){
         return movieRepository.findAll();
+    }
+
+    public List<MovieEntity> findByCategory(Long categoryID){
+        return movieRepository.findMovieByCategory(List.of(CategoryEntity.builder().id(categoryID).build()));
     }
 
     private List<CategoryEntity> findCategories (List<CategoryEntity> categories){
