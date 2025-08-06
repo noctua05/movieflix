@@ -7,6 +7,7 @@ import com.movieflix.mapper.MovieMapper;
 import com.movieflix.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -68,6 +69,10 @@ public class MovieService {
         List<StreamingEntity> streamingFound = new ArrayList<>();
         streamings.forEach(streaming-> streamingService.findById(streaming.getId()).ifPresent(streamingFound::add));
         return streamingFound;
+    }
+
+    public void delete (Long id){
+        movieRepository.deleteById(id);
     }
 
 }

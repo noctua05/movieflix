@@ -7,10 +7,12 @@ import com.movieflix.request.MovieRequest;
 import com.movieflix.response.MovieResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/movieflix/movie")
@@ -54,5 +56,16 @@ public class MovieControler {
                 .map(MovieMapper::toMovieResponse)
                 .toList();
         return ResponseEntity.ok(movies);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteMovie (@PathVariable Long id){
+        Optional<MovieEntity> optMovie = movieService.findById(id);
+
+        if(optMovie.isPresent()){
+            movieService.delete(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
