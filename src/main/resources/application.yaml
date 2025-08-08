@@ -17,6 +17,21 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
-
   flyway:
     enabled: true
+
+springdoc:
+  api-docs:
+    path: /api/api-docs
+  swagger-ui:
+    path: /swagger-ui
+
+movieflix:
+  security:
+    secret: "movieflix"
+
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        security: DEBUG
