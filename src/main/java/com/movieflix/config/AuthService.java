@@ -1,4 +1,4 @@
-package com.movieflix.Service;
+package com.movieflix.config;
 
 import com.movieflix.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
