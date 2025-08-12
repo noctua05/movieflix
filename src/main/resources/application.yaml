@@ -30,8 +30,8 @@ movieflix:
   security:
     secret: "movieflix"
 
-#logging:
-#  level:
-#    org:
-#      springframework:
-#        security: DEBUG
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

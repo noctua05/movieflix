@@ -7,13 +7,13 @@ import com.movieflix.mapper.UserMapper;
 import com.movieflix.request.UserRequest;
 import com.movieflix.response.LoginResponse;
 import com.movieflix.response.UserResponse;
+import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.Tolerate;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,9 +36,8 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody UserRequest request){
-        UsernamePasswordAuthenticationToken userAndPass =new UsernamePasswordAuthenticationToken(request.email(),request.password() );
+        UsernamePasswordAuthenticationToken userAndPass = new UsernamePasswordAuthenticationToken(request.email(),request.password());
         Authentication authenticate = authenticationManager.authenticate(userAndPass);
-
         UserEntity user = (UserEntity) authenticate.getPrincipal();
         String token = tokenService.generateToken(user);
 
