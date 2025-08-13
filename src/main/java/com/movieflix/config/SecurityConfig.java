@@ -1,5 +1,6 @@
 package com.movieflix.config;
 
+import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,11 +38,12 @@ public class SecurityConfig {
                                 "/webjars/**",
                                 "/swagger-resources/**"
                         ).permitAll()
+                        .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/movieflix/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/movieflix/auth/login").permitAll()
                         // todas as outras requisições precisam de autenticação
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

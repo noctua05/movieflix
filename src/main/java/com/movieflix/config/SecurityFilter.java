@@ -10,7 +10,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -30,12 +29,11 @@ public class SecurityFilter extends OncePerRequestFilter {
 
         if (Strings.isNotEmpty(authorizationHeader) && authorizationHeader.startsWith("Bearer ")) {
             String token = authorizationHeader.substring("Bearer ".length());
-
             Optional<JWTUserData> optJwtUserData = tokenService.verifyToken(token);
+
             if(optJwtUserData.isPresent()){
 
                 List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-
                 JWTUserData userData = optJwtUserData.get();
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userData, null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
