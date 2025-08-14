@@ -3,10 +3,10 @@ package com.movieflix.mapper;
 import com.movieflix.entity.CategoryEntity;
 import com.movieflix.entity.MovieEntity;
 import com.movieflix.entity.StreamingEntity;
-import com.movieflix.request.MovieRequest;
-import com.movieflix.response.CategoryResponse;
-import com.movieflix.response.MovieResponse;
-import com.movieflix.response.StreamingResponse;
+import com.movieflix.controller.request.MovieRequest;
+import com.movieflix.controller.response.CategoryResponse;
+import com.movieflix.controller.response.MovieResponse;
+import com.movieflix.controller.response.StreamingResponse;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;

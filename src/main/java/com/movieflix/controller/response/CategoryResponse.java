@@ -1,4 +1,4 @@
-package com.movieflix.response;
+package com.movieflix.controller.response;
 
 import lombok.Builder;
 

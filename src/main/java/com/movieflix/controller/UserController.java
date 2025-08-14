@@ -5,15 +5,15 @@ import com.movieflix.Service.UserService;
 import com.movieflix.config.TokenService;
 import com.movieflix.entity.UserEntity;
 import com.movieflix.mapper.UserMapper;
-import com.movieflix.request.UserRequest;
-import com.movieflix.response.LoginResponse;
-import com.movieflix.response.UserResponse;
+import com.movieflix.controller.request.UserRequest;
+import com.movieflix.controller.response.LoginResponse;
+import com.movieflix.controller.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +46,7 @@ public class UserController {
             String token = tokenService.generateToken(user);
             return ResponseEntity.ok(new LoginResponse(token));
 
-        }catch (AuthenticationException e){
+        }catch (BadCredentialsException e){
             throw new UsernameOrPasswordInvalidException("Usuário ou Senha inválido.");
         }
     }

@@ -1,8 +1,8 @@
 package com.movieflix.mapper;
 
 import com.movieflix.entity.UserEntity;
-import com.movieflix.request.UserRequest;
-import com.movieflix.response.UserResponse;
+import com.movieflix.controller.request.UserRequest;
+import com.movieflix.controller.response.UserResponse;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
